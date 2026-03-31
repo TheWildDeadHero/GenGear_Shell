@@ -52,13 +52,22 @@ module headphone_cutout()
     cylinder(d=headphone_dia, h=wall_thickness);
 }
 
+module analog_stick_lip()
+{
+    rotate_extrude() hull()
+    {
+        polygon([[jc_cutout_dia / 2, 0], [jc_cutout_dia / 2 + 3.0, 0], [jc_cutout_dia / 2 + 0.5, 0.5]]);
+        translate([jc_cutout_dia / 2 + 0.5, 0.3]) circle(r=0.4);
+    }
+}
+
 // Create the main body solid from defined corner locations. 
 module main_body()
 {
-    hull()
+    linear_extrude(base_d) hull()
     {
         for (corner = main_body_corners)
-            translate(corner) cylinder(r=main_body_corner_radius, h=base_d);
+            translate([corner[0], corner[1]]) circle(r=main_body_corner_radius);
     }
 }
 
@@ -205,6 +214,12 @@ module add_mounts()
     translate(r_analog_loc - [0.0, 0.0, jc_mnt_top_d]) joycon_mount_posts(front=false);
 }
 
+module add_details()
+{
+    translate(l_analog_loc + [0.0, 0.0, wall_thickness]) analog_stick_lip();
+    translate(r_analog_loc + [0.0, 0.0, wall_thickness]) analog_stick_lip();
+}
+
 // --- MAIN BODY MODULES ---
 /*
 Create the main body module
@@ -216,6 +231,7 @@ module front_shell()
     {
         main_shell();
         add_mounts();
+        add_details();
     }
 }
 

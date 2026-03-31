@@ -32,7 +32,7 @@ reusable.
 // Create a small pivot so the DPad cannot press cross directions or all 4 directions simultaneously
 module dpad_pivot(dia=dpad_pivot_dia, d=dpad_pivot_d)
 {
-    main_cyl_d = dpad_pivot_d - dpad_pivot_dia / 2;
+    main_cyl_d = d - dpad_pivot_dia / 2;
 
     union()
     {
@@ -57,7 +57,7 @@ Create the main body modules
 */
 
 // Create a D-pad solid - In FreeCAD, fillet the edge of the raised "plus" wit 1mm. Fillet the disc with 0.4mm.
-module dpad()
+module dpad(pivot_d=dpad_pivot_d)
 {
     cutout_side         = dpad_dia / 2;
     half_dir_width      = dpad_dir_w / 2;
@@ -83,7 +83,7 @@ module dpad()
         translate([0.0, 0.0, -dpad_pad_d]) dpad_pad();
         
         // Add the pivot
-        translate([0.0, 0.0, -dpad_pad_d]) rotate([180.0, 0.0, 0.0]) dpad_pivot();
+        translate([0.0, 0.0, -dpad_pad_d]) rotate([180.0, 0.0, 0.0]) dpad_pivot(d=pivot_d);
     }
 }
 

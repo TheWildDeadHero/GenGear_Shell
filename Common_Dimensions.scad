@@ -79,6 +79,20 @@ kailh_sw_pin_dist                   = 5.0;
 kailh_sw_pin_pitch                  = 1.0;
 kailh_sw_pin_length                 = 3.0;
 
+// --- OMRON D2LS MICROSWITCH DIMENSIONS ---
+
+omron_d2ls_w                        = 8.6;
+omron_d2ls_h                        = 4.95;
+omron_d2ls_d                        = 3.0;
+
+omron_d2ls_plunger_dia              = 1.0;
+omron_d2ls_plunger_w                = 1.7;
+omron_d2ls_plunger_offset           = 3.61;
+
+omron_d2ls_boss_dia                 = 1.05;
+omron_d2ls_boss_d                   = 0.6;
+omron_d2ls_boss_dist                = 4.0;
+
 // --- DPAD DIMENSIONS ---
 
 // Main Dimensions
@@ -114,14 +128,14 @@ dpad_ret_dia                        = dpad_pad_dia + dpad_ret_offset;
 dpad_ret_d                          = dpad_pad_d;
 
 // Pivot dimensions
-dpad_pivot_dia                      = 1.5;
-dpad_pivot_d                        = 1.75;
+dpad_pivot_dia                      = 3.0;
+dpad_pivot_d                        = kailh_sw_d;
 
 // --- FACE BUTTON DIMENSIONS ---
 
 // General face button dimensions
 face_btn_dia                        = 9.6;
-face_btn_d                          = 5.4;
+face_btn_d                          = 5.1;
 
 // Face button text dimensions
 face_btn_txt_offset                 = 4.9;
@@ -200,7 +214,7 @@ s_btn_spring                        = 2.5;
 
 // General auxillary button dimensions
 aux_btn_dia                         = 5.3;
-aux_btn_d                           = 4.25;
+aux_btn_d                           = 4.0;
 
 // Greater sphere diameter for the auxillary button dome
 aux_btn_dome_dia                    = 12.0;

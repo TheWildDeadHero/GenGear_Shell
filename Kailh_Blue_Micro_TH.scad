@@ -29,24 +29,26 @@ Create the main body module
 */
 
 // Creates a Kailh Blue Micro through-hole switch
-module kailh_blue_micro_th()
+module kailh_blue_micro_th(center_at_plunger=false)
 {  
     edge_dist = 4.0;
     dia       = 2 * kailh_sw_plunger_r;
     h         = 2.75;
+    
+    translation = center_at_plunger ? [-(kailh_sw_w / 2 - edge_dist), 0.0, -kailh_sw_d] : [0.0, 0.0, 0.0];
 
-    union()
+    translate(translation) union()
     {
         // Main body
-        translate([0.0, 0.0, kailh_sw_d / 2]) cube([kailh_sw_w, kailh_sw_h, kailh_sw_d], center=true);
+        color("blue") translate([0.0, 0.0, kailh_sw_d / 2]) cube([kailh_sw_w, kailh_sw_h, kailh_sw_d], center=true);
         
         // Pins
-        translate([-kailh_sw_pin_dist, 0.0, -kailh_sw_pin_length]) cylinder(d=kailh_sw_pin_pitch, h=kailh_sw_pin_length);
-        translate([               0.0, 0.0, -kailh_sw_pin_length]) cylinder(d=kailh_sw_pin_pitch, h=kailh_sw_pin_length);
-        translate([ kailh_sw_pin_dist, 0.0, -kailh_sw_pin_length]) cylinder(d=kailh_sw_pin_pitch, h=kailh_sw_pin_length);
+        color("silver") translate([-kailh_sw_pin_dist, 0.0, -kailh_sw_pin_length]) cylinder(d=kailh_sw_pin_pitch, h=kailh_sw_pin_length);
+        color("silver") translate([               0.0, 0.0, -kailh_sw_pin_length]) cylinder(d=kailh_sw_pin_pitch, h=kailh_sw_pin_length);
+        color("silver") translate([ kailh_sw_pin_dist, 0.0, -kailh_sw_pin_length]) cylinder(d=kailh_sw_pin_pitch, h=kailh_sw_pin_length);
         
         // Switch cylinder/plunger
-        translate([kailh_sw_w / 2 - edge_dist, 0.0, kailh_sw_d]) rotate([90, 0, 0]) cylinder(d=dia, h=h, center=true);
+        color("blue") translate([kailh_sw_w / 2 - edge_dist, 0.0, kailh_sw_d]) rotate([90, 0, 0]) cylinder(d=dia, h=h, center=true);
     }
 }
 
