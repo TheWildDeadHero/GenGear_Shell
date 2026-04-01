@@ -200,8 +200,8 @@ s_btn_pad_d                         = 1.25;
 s_btn_dome_dia                      = 14.0;
 
 // Man cutout dimensions
-s_btn_cutout_w                      = 31.1;
-s_btn_cutout_h                      = 10.1;
+s_btn_cutout_w                      = 30.5;
+s_btn_cutout_h                      = 9.6;
 s_btn_cutout_d                      = wall_thickness * 6;
 
 // Mounting dimensions
@@ -306,8 +306,8 @@ l_analog_loc                        = [-total_w / 2 + wing_w/1.5,       -18.0, b
 r_analog_loc                        = [ total_w / 2 - wing_w/1.5,       -18.0, base_d - wall_thickness];
 
 // Shoulder and trigger locations
-left_shoulder_btn_loc               = [-((shoulder_loc_upper[0] + shoulder_loc_lower[0]) / 2), total_h / 2 - s_btn_d, trigger_cutout_d + s_btn_h / 2];
-right_shoulder_btn_loc              = [  (shoulder_loc_upper[0] + shoulder_loc_lower[0]) / 2,  total_h / 2 - s_btn_d, trigger_cutout_d + s_btn_h / 2];
+left_shoulder_btn_loc               = [-((shoulder_loc_upper[0] + shoulder_loc_lower[0]) / 2), total_h / 2, trigger_cutout_d + s_btn_h / 2];
+right_shoulder_btn_loc              = [  (shoulder_loc_upper[0] + shoulder_loc_lower[0]) / 2,  total_h / 2, trigger_cutout_d + s_btn_h / 2];
 
 right_trigger_loc                   = [ (shoulder_loc_lower[0] - shoulder_width), total_h / 2 - 2 * shoulder_height, 0];
 left_trigger_loc                    = [-(shoulder_loc_lower[0] + shoulder_width), total_h / 2 - 2 * shoulder_height, 0];

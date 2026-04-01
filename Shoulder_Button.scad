@@ -79,8 +79,20 @@ module shouder_button_cutout()
     } 
 }
 
+module shell_s_btn_pin_mount(left=false)
+{
+    rotate([90, 0, 0]) translate([-s_btn_w / 2 - s_btn_mnt_dia / 2 - s_btn_pad_tol_t, -s_btn_pad_d, -s_btn_h / 2 - s_btn_pad_tol_s]) rotate([0, 0, (left ? -1 : 1) * (shoulder_angle_deg + 90)])
+    pin_mount(dia=s_btn_mnt_dia,
+              d=s_btn_mnt_d,
+              bore_dia=s_btn_pin_dia,
+              spring=s_btn_spring,
+              wall=0.0,
+              top=false);
+}
 // --- RENDER ---
 /*
 Actually draw the main body
 */
-shoulder_button();
+//shoulder_button();
+
+shell_s_btn_pin_mount(left=false);

@@ -55,8 +55,9 @@ module assembly(th_switches=false)
     color("grey") translate(home_button_loc) aux_home_button();
     color("grey") translate(r_analog_loc - [0.0, 0.0, jc_d]) joycon_analog_module();
     color("grey") translate(l_analog_loc - [0.0, 0.0, jc_d]) joycon_analog_module();
-    color("grey") translate(left_shoulder_btn_loc - [-.5,s_btn_pad_d + 0.5,0]) rotate(edge_rotation_deg + [180, 180, shoulder_angle_deg]) shoulder_button();
-    color("grey") translate(right_shoulder_btn_loc - [-.5,s_btn_pad_d + 0.5,0]) rotate(edge_rotation_deg + [180, 0, -shoulder_angle_deg]) shoulder_button();
+    
+    color("grey") translate(left_shoulder_btn_loc) rotate(edge_rotation_deg + [180, 180, shoulder_angle_deg]) translate([0, 0.0, -s_btn_d - wall_thickness]) shoulder_button();
+    color("grey") translate(right_shoulder_btn_loc) rotate(edge_rotation_deg + [180, 0, -shoulder_angle_deg]) translate([0, 0.0, -s_btn_d - wall_thickness]) shoulder_button();
     
     if (th_switches) // Use the larger Kailh Blue through_hole micro switches
     {

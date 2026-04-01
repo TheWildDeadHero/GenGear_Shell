@@ -42,8 +42,12 @@ module usb_c_cutout()
 
 // Create a cutout for a MicroSD card slot
 module micro_sd_slot_cutout()
-{    
-    cube([microsd_width, microsd_height, microsd_depth]);
+{
+    union()
+    {
+        cube([microsd_width, microsd_height, microsd_depth]);
+        translate([microsd_width / 2, microsd_height / 2, 23 - microsd_depth / 2]) sphere(r=14);
+    }
 }
 
 // Create a cutout for a headphone jack (3.5mm TRS recepticle)
@@ -64,10 +68,28 @@ module analog_stick_lip()
 // Create the main body solid from defined corner locations. 
 module main_body()
 {
-    linear_extrude(base_d) hull()
+    module base_shape()
     {
-        for (corner = main_body_corners)
-            translate([corner[0], corner[1]]) circle(r=main_body_corner_radius);
+        hull()
+        {
+            for (corner = main_body_corners)
+                translate([corner[0], corner[1]]) circle(r=main_body_corner_radius);
+        }
+    }
+
+    fillet_radius = 2.0;
+
+    hull()
+    {
+        // Bottom slice
+        linear_extrude(base_d - fillet_radius - 0.1) base_shape();
+        
+        // Top slice
+        translate([0, 0, base_d - fillet_radius - 0.1]) minkowski()
+        {
+                linear_extrude(height = 0.1) offset(r=-fillet_radius) base_shape();
+                sphere(r = fillet_radius);
+        }
     }
 }
 
@@ -208,7 +230,9 @@ module add_mounts()
     translate(mnt_post_3_loc) rotate([180, 0, 0]) mount_post();
     translate(mnt_post_4_loc) rotate([180, 0, 0]) mount_post();
     
-    //translate() rotate() s_btn_pin_mount(shell=true)
+    translate(left_shoulder_btn_loc) rotate(edge_rotation_deg + [180, 180, shoulder_angle_deg]) translate([0, 0.0, -s_btn_d - wall_thickness]) shell_s_btn_pin_mount();
+    translate(right_shoulder_btn_loc) rotate(edge_rotation_deg + [180, 0, -shoulder_angle_deg]) translate([0, 0.0, -s_btn_d - wall_thickness])
+    shell_s_btn_pin_mount();
     
     translate(l_analog_loc - [0.0, 0.0, jc_mnt_top_d]) joycon_mount_posts(front=false);
     translate(r_analog_loc - [0.0, 0.0, jc_mnt_top_d]) joycon_mount_posts(front=false);
